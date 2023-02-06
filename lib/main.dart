@@ -38,20 +38,6 @@ class _WeatherAppState extends State<WeatherApp> {
   var currTime;
   var locationPermission = false;
   var database;
-//Check if connected to internet
-
-  Future<bool> checkInternet() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      // I am connected to a mobile network.
-      return true;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-      // I am connected to a wifi network.
-      return true;
-    }
-
-    return false;
-  }
 
 //Accessing location Functionality
   Future<Position> acessLocation() async {
@@ -217,7 +203,7 @@ class _WeatherAppState extends State<WeatherApp> {
     return Findit;
   }
 
-  void doit() async {
+  void addUserCity() async {
     bool result = await InternetConnectionCheckerPlus().hasConnection;
     if (result == true) {
       var p = await acessLocation();
@@ -249,8 +235,7 @@ class _WeatherAppState extends State<WeatherApp> {
               dataFetchedTime = DateTime.now();
             }));
       }
-      var p = doit();
-//Load data from Database
+      var p = addUserCity();
     });
   }
 
@@ -274,10 +259,6 @@ class _WeatherAppState extends State<WeatherApp> {
             dataLoaded = true;
           }));
     });
-  }
-
-  void Retry() {
-    _pullRefresh();
   }
 
   String suggestion = "";
@@ -337,7 +318,7 @@ class _WeatherAppState extends State<WeatherApp> {
                           );
                         },
                       )
-                    : ShowAnimationFailedPage(Retry)),
+                    : ShowAnimationFailedPage()),
           ]),
         ),
       ),

@@ -4,8 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ShowAnimationFailedPage extends StatefulWidget {
-  final Function Refresh;
-  ShowAnimationFailedPage(this.Refresh, {super.key});
+  ShowAnimationFailedPage({super.key});
   @override
   State<ShowAnimationFailedPage> createState() =>
       _ShowAnimationFailedPageState();
